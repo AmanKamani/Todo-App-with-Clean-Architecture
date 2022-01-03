@@ -1,4 +1,4 @@
-package jb.production.todowithcleanarchitecture
+package jb.production.todowithcleanarchitecture.feature_notes.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoWithCleanArchitecture">
         <activity
-            android:name=".MainActivity"
+            android:name=".feature_notes.presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TodoWithCleanArchitecture.NoActionBar">
