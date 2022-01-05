@@ -11,6 +11,7 @@ import jb.production.todowithcleanarchitecture.feature_notes.data.repository.Not
 import jb.production.todowithcleanarchitecture.feature_notes.domain.repository.NoteRepository
 import jb.production.todowithcleanarchitecture.feature_notes.domain.usecase.AddEditNote
 import jb.production.todowithcleanarchitecture.feature_notes.domain.usecase.DeleteNote
+import jb.production.todowithcleanarchitecture.feature_notes.domain.usecase.GetNote
 import jb.production.todowithcleanarchitecture.feature_notes.domain.usecase.GetNotes
 import jb.production.todowithcleanarchitecture.feature_notes.domain.usecase.NoteUseCases
 import javax.inject.Singleton
@@ -41,7 +42,8 @@ object AppModule {
         return NoteUseCases(
             getNotes = GetNotes(repository),
             addEditNote = AddEditNote(repository),
-            deleteNote = DeleteNote(repository)
+            deleteNote = DeleteNote(repository),
+            getNote = GetNote(repository)
         )
     }
 }

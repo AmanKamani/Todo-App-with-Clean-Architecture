@@ -84,7 +84,7 @@ fun NoteItem(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = note.title,
+                text = note.description,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onSurface,
                 maxLines = 10,
@@ -97,7 +97,11 @@ fun NoteItem(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
         ) {
-            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Note")
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "Delete Note",
+                tint = MaterialTheme.colors.onSurface
+            )
         }
     }
 }

@@ -9,7 +9,6 @@ import jb.production.todowithcleanarchitecture.feature_notes.domain.model.Note
 import jb.production.todowithcleanarchitecture.feature_notes.domain.usecase.NoteUseCases
 import jb.production.todowithcleanarchitecture.feature_notes.domain.util.NoteOrder
 import jb.production.todowithcleanarchitecture.feature_notes.domain.util.OrderType
-import jb.production.todowithcleanarchitecture.feature_notes.presentation.util.NotesState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -40,11 +39,12 @@ class NotesViewModel @Inject constructor(
                 }
             }
             is NotesEvent.Order -> {
-                if (state.value.noteOrder::class != event.noteOrder::class &&
-                    state.value.noteOrder.orderType != event.noteOrder.orderType
+                if (state.value.noteOrder::class == event.noteOrder::class &&
+                    state.value.noteOrder.orderType == event.noteOrder.orderType
                 ) {
-                    getNotes(event.noteOrder)
+                    return
                 }
+                getNotes(event.noteOrder)
             }
             is NotesEvent.RestoreNote -> {
                 viewModelScope.launch {
@@ -63,7 +63,7 @@ class NotesViewModel @Inject constructor(
 
     private fun getNotes(noteOrder: NoteOrder) {
         notesJob?.cancel()
-        notesJob = noteUseCases.getNotes()
+        notesJob = noteUseCases.getNotes(noteOrder)
             .onEach { notes ->
                 _state.value = state.value.copy(
                     notes = notes,
